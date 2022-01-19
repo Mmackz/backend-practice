@@ -1,0 +1,15 @@
+{
+  "name": "practice",
+  "version": "0.1.0",
+  "description": "Practicing some express and node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mattie",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
