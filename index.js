@@ -1,27 +1,29 @@
-const express = require("express");
-const things = require("./things");
+const express = require('express');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const upload = multer();
 const app = express();
 
-app.set("view engine", "pug");
-app.set("views", "./views")
-app.route("/").get((req, res) => res.send("Hello Express"));
-app.use("/things", things);
-app.get("/:id([0-9]{5})", (req, res) => res.send("The id is " + req.params.id))
-app.get("/json", (req, res) => {
-   res.send({"hi": "hi"})
-})
-app.get("/first_template", (req, res) => res.render("first_view"));
-app.get("/dynamic_view", (req, res) => {
-   res.render("dynamic", {
-      name: "TutorialsPoint",
-      url: "https://tutorialspoint.com"
-   });
-});
-app.get("/components", (req, res) => {
-   res.render("content")
-})
-app.get('*', function(req, res){
-   res.send('Sorry, this is an invalid URL.');
+app.get('/', (req, res) => {
+   res.render('form');
 });
 
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+// for parsing application/json
+app.use(bodyParser.json()); 
+
+// for parsing application/xwww-
+app.use(bodyParser.urlencoded({ extended: true })); 
+//form-urlencoded
+
+// for parsing multipart/form-data
+app.use(upload.array()); 
+app.use(express.static('public'));
+
+app.post('/', (req, res) => {
+   console.log(req.body.to);
+   res.send("received your request!");
+});
 app.listen(3000);
