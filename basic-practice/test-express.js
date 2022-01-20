@@ -6,5 +6,5 @@ const port = 3000;
 app.get("/", (req, res) => res.send("Hello World!"));
 
 app.listen(port, () =>
-   console.log(`App listening on port ${port} \n 4x4 square perimeter: ${square.area(8)}`)
+   console.log(`App listening on port ${port} \n 4x4 square area: ${square.area(4)}`)
 );
